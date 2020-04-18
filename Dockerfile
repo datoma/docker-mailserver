@@ -1,12 +1,14 @@
-FROM hardware/debian-mail-overlay:latest
-
+FROM debian:buster-slim
 LABEL description "Simple and full-featured mail server using Docker" \
-      maintainer="Hardware <contact@meshup.net>"
+      maintainer="datoma - https://github.com/datoma"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV PYTHONUNBUFFERED=1
+ARG CODENAME="buster"
 
-RUN apt-get update && apt-get install -y -q --no-install-recommends \
+RUN apt-get update && apt-get install -y -q lsb-release wget curl gnupg2 \
+ && curl -sL https://rspamd.com/apt-stable/gpg.key | apt-key add - \
+ && echo "deb http://rspamd.com/apt-stable/ ${CODENAME} main" > /etc/apt/sources.list.d/rspamd.list \
+ && apt-get update && apt-get --no-install-recommends install -y -q rspamd \
     postfix postfix-pgsql postfix-mysql postfix-ldap postfix-pcre libsasl2-modules \
     dovecot-core dovecot-imapd dovecot-lmtpd dovecot-pgsql dovecot-mysql dovecot-ldap dovecot-sieve dovecot-managesieved dovecot-pop3d \
     fetchmail libdbi-perl libdbd-pg-perl libdbd-mysql-perl liblockfile-simple-perl \
