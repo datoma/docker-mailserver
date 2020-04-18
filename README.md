@@ -1,10 +1,4 @@
-:warning:
-
-# This docker image is no longer maintained.
-
-:warning:
-
-## mailserver
+# mailserver
 
 ### Build
 
@@ -1088,3 +1082,6 @@ Or stay with `1.0-legacy` tag (not recommended).
 [![](https://i.imgur.com/Em7M8F0.png)](https://i.imgur.com/Em7M8F0.png)
 
 <p align="right"><a href="#summary">Back to table of contents :arrow_up_small:</a></p>
+
+## forked from
+https://store.docker.com/community/images/hardware/mailserver
