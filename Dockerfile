@@ -68,8 +68,8 @@ RUN apt-get update && apt-get install -y -q lsb-release wget curl gnupg2 \
  && if [ "${CHECKSUM}" != "${S6_SHA256_HASH}" ]; then echo "${S6_TARBALL} : bad checksum" && exit 1; fi \
  && tar xzf ${S6_TARBALL} && cd s6-${S6_VER} \
  && ./configure --prefix=/usr --bindir=/usr/bin --sbindir=/usr/sbin \
- && make && make install
-RUN cd /tmp \
+ && make && make install \
+ && cd /tmp \
  && GUCCI_BINARY="gucci-v${GUCCI_VER}-linux-amd64" \
  && wget -q https://github.com/noqcks/gucci/releases/download/${GUCCI_VER}/${GUCCI_BINARY} \
  && CHECKSUM=$(sha256sum ${GUCCI_BINARY} | awk '{print $1}') \
